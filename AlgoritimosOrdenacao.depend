@@ -1,5 +1,8 @@
 # depslib dependency file v1.0
-1584205420 source:c:\users\maugo\onedrive\documentos\mauricio\estrutura de dados- c\algoritimosordenacao\main.c
+1700154947 source:c:\users\maugo\onedrive\documentos\mauricio\estrutura de dados- c\algoritimosordenacao\main.c
 	<stdio.h>
 	<stdlib.h>
+	"AlgoritimosOrdenacao.h"
+
+1700155548 c:\users\maugo\onedrive\documentos\mauricio\estrutura de dados- c\algoritimosordenacao\algoritimosordenacao.h
 

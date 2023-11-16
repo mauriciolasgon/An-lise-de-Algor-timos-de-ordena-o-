@@ -4,7 +4,18 @@
 
 int main()
 {
-    int v={1,2,3,4,5};
-    MergeSort(&v,5);
+    vetor *x;
+
+    x=(vetor*)malloc(10*sizeof(vetor));
+    for(int i=0;i<10;i++){
+        x[i].chave=(10-i);
+        x[i].valor=0;
+    }
+
+    MergeSort(x,10);
+    printf("\n");
+    for (int i = 0; i < 10; i++) {
+		printf("%d ", x[i].chave);
+	}
     return 0;
 }
