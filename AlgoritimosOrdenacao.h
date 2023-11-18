@@ -64,11 +64,15 @@ void ShellSort( struct item *v, int n){
 
 void Merge(vetor *v,vetor *c,int i,int m,int f){
     int z,iv=i,ic=m+1;
-    for(z=i;z<=f;z++)c[z]=v[z];
+
+    for(z=i;z<=f;z++){
+        c[z]=v[z];
+    }
     z=i;
+
     while(iv<=m && ic<=f)
     {
-        if(c[iv].chave <=c[ic].chave)
+        if(c[iv].chave >=c[ic].chave)
         {
             v[z++]=c[iv++];
         }
@@ -77,15 +81,20 @@ void Merge(vetor *v,vetor *c,int i,int m,int f){
             v[z++]=c[ic++];
         }
     }
+
     while(iv<=m)
     {
+
         v[z++]=c[iv++];
+
     }
     while(ic<=f)
     {
         v[z++]=c[ic++];
 
     }
+
+
 
 }
 
@@ -96,19 +105,21 @@ void Sort(vetor *v,vetor*c,int i,int f){
         int m=(i+f)/2;
         Sort(v,c,i,m);
         Sort(v,c,m+1,f);
-        if(v[m].chave>v[m+1].chave)
+        if(v[m].chave<v[m+1].chave)
         {
             Merge(v,c,i,m,f);
         }
     }
+
 }
 
 
 
 void MergeSort(vetor *v,int n){
-    vetor *c=(vetor*)malloc(sizeof(int)*n);
+    vetor *c=(vetor*)malloc(sizeof(vetor)*n);
     Sort(v,c,0,n-1);
     free(c);
+
 }
 
 int particao(int *v,int LI,int LS){
