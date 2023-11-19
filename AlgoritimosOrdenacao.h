@@ -8,13 +8,52 @@ typedef struct item
     float valor;
 }vetor;
 
+
+void imprimeVetor(vetor **vet,int tam){
+
+    for(int i=0;i<10;i++){
+        printf("\n");
+        for(int j=0;j<tam;j++){
+            printf(" %d", vet[i][j].chave);
+        }
+    }
+
+}
+
+vetor ** geradorDeVetor(vetor **vet,int tam){
+    int seed=0;
+    // gera 10 casos de vetores
+    vet=(vetor**)malloc(10*sizeof(vetor*));
+    for(int i=0;i<10;i++){
+        vet[i]=(vetor*)malloc(tam*sizeof(vetor));
+    }
+    while(seed<10){
+
+        srand(seed);
+        for(int i=0;i<10;i++){
+            for(int j=0;j<tam;j++){
+                vet[i][j].chave=rand()%100;
+                vet[i][j].valor=100+rand();
+            }
+        }
+        seed++;
+    }
+    return vet;
+}
+
+
+void liberaVetor(vetor **vet){
+    for(int i=0;i<10;i++){
+        free(vet[i]);
+    }
+    free(vet);
+}
+
 void troca(vetor *A, vetor *B){
     vetor troca;
-    printf("A: %d  B: %d \t",A->chave,B->chave);
     troca=*A;
     *A=*B;
     *B=troca;
-    printf("A: %d  B: %d \n",A->chave,B->chave);
 
 }
 

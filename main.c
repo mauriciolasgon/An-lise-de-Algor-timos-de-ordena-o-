@@ -5,23 +5,22 @@
 
 int main()
 {
-    vetor *x;
-    int seed=0;
-    srand(seed);
+    vetor **vet;
+    int tam=10;
+    vet=geradorDeVetor(vet,tam);
+    //MergeSort(x,20);
+    printf("\n");
+
+    imprimeVetor(vet,tam);
 
     for(int i=0;i<10;i++){
-        printf("%d ",100+rand()%1000);
+        MergeSort(vet[i],tam);
     }
-    x=(vetor*)malloc(20*sizeof(vetor));
-    for(int i=0;i<20;i++){
-        x[i].chave=i+1;
-        x[i].valor=0;
-    }
+    printf("\n");
 
-    //MergeSort(x,20);
-    //printf("\n");
-    //for (int i = 0; i < 20; i++) {
-		//printf("%d ", x[i].chave);
-	//}
+    imprimeVetor(vet,tam);
+
+    liberaVetor(vet);
+    //liberaVetor(vet);
     return 0;
 }
