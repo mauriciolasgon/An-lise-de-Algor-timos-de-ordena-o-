@@ -193,36 +193,44 @@ void QuickSort(int *v,int LI,int LS){
     }
 }
 
-void Radixsort(int *vet, int n) {
-	int i, exp = 1, m = 0, bucket[n], temp[n];
+void Radixsort(vetor *vet, int n) {
+    int i, exp = 1, m = vet[0].chave;
+    vetor *bucket = (vetor*)malloc(n * sizeof(vetor));
+    vetor *temp = (vetor*)malloc(n * sizeof(vetor));
 
-	for(i = 0; i < n; i++) {
-		if(vet[i] > m) {
-			m = vet[i];
-		}
-	}
+    for (i = 1; i < n; i++) {
+        if (vet[i].chave > m) {
+            m = vet[i].chave;
+        }
+    }
 
-	while((m/exp) > 0) {
-		for (i = 0; i < n; i++) {
-			bucket[i] = 0;
-		}
-		for(i = 0; i < n; i++) {
-			bucket[(vet[i] / exp) % 10]++;
-		}
-		for(i = 1; i < n; i++) {
-			bucket[i] += bucket[i-1];
-		}
-		for(i = (n - 1); i >= 0; i--) {
-			temp[--bucket[(vet[i] / exp) % 10]] = vet[i];
-		}
-		for(i = 0; i < n; i++) {
-			vet[i] = temp[i];
-		}
-		exp *= 10;
-	}
+    while (m / exp > 0) {
+        int cont[10] = {0};
+
+        for (i = 0; i < n; i++) {
+            int index = (vet[i].chave / exp) % 10;
+            cont[index]++;
+        }
+
+        for (i = 8; i >= 0; i--) {
+            cont[i] += cont[i + 1];
+        }
+
+        for (i = n - 1; i >= 0; i--) {
+            int index = (vet[i].chave / exp) % 10;
+            temp[--cont[index]] = vet[i];
+        }
+
+        for (i = 0; i < n; i++) {
+            vet[i] = temp[i];
+        }
+
+        exp *= 10;
+    }
+
+    free(bucket);
+    free(temp);
 }
-
-
 
 
 
