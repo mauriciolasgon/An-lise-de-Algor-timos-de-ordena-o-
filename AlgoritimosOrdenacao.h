@@ -199,6 +199,7 @@ void QuickSort(vetor *v,int LI,int LS){
 
 
 
+
 vetor **geradorDeVetorCrescente(vetor **vet,int tam){
     int seed=0,aux;
     // gera 10 casos de vetores
@@ -219,6 +220,7 @@ vetor **geradorDeVetorCrescente(vetor **vet,int tam){
     }
     return vet;
     }
+
 
 
 void Radixsort(vetor *vet, int n) {
@@ -249,6 +251,7 @@ void Radixsort(vetor *vet, int n) {
             temp[--cont[index]] = vet[i];
         }
 
+
         for (i = 0; i < n; i++) {
             vet[i] = temp[i];
         }
@@ -261,6 +264,16 @@ void Radixsort(vetor *vet, int n) {
 }
 
 
+        for (i = 0; i < n; i++) {
+            vet[i] = temp[i];
+        }
+
+        exp *= 10;
+    }
+
+    free(bucket);
+    free(temp);
+}
 
 
 
