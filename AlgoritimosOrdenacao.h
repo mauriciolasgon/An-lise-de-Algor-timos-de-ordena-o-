@@ -170,8 +170,8 @@ int particao(vetor *v,int LI,int LS){
     pivo=v[e].chave;
     while(e<d)
     {
-        while((v[e].chave<=pivo)&&(e<LS)){e++;}
-        while((v[d].chave>pivo)&&(d>LI)){d--;}
+        while((v[e].chave>=pivo)&&(e<LS)){e++;}
+        while((v[d].chave<pivo)&&(d>LI)){d--;}
         if(e<d)
         {
             troca(&v[e],&v[d]);
