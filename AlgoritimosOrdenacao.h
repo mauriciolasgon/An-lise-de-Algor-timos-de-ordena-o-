@@ -9,7 +9,7 @@ typedef struct item
 }vetor;
 
 
-void imprimeVetor(vetor **vet,int tam){
+void imprimeVetores(vetor **vet,int tam){
 
     for(int i=0;i<10;i++){
         printf("\n");
@@ -20,26 +20,29 @@ void imprimeVetor(vetor **vet,int tam){
 
 }
 
-vetor ** geradorDeVetor(vetor **vet,int tam){
+
+
+vetor ** geradorDeVetorAleatorio(vetor **vet,int tam){
     int seed=0;
     // gera 10 casos de vetores
     vet=(vetor**)malloc(10*sizeof(vetor*));
     for(int i=0;i<10;i++){
         vet[i]=(vetor*)malloc(tam*sizeof(vetor));
     }
-    while(seed<10){
 
-        srand(seed);
-        for(int i=0;i<10;i++){
-            for(int j=0;j<tam;j++){
-                vet[i][j].chave=rand()%100;
-                vet[i][j].valor=100+rand();
-            }
+    srand(seed);
+    for(int i=0;i<10;i++){
+        for(int j=0;j<tam;j++){
+            vet[i][j].chave=rand()%1000;
+            vet[i][j].valor=100+rand();
         }
-        seed++;
     }
+
+
     return vet;
 }
+
+
 
 
 void liberaVetor(vetor **vet){
@@ -54,18 +57,19 @@ void troca(vetor *A, vetor *B){
     troca=*A;
     *A=*B;
     *B=troca;
-
 }
 
 void InsertionSort(struct item *v,int n){
     for(int i=1;i<n;i++){
         for(int j=i;j>=0;j--){
-            if(v[j-1].chave>v[j].chave){
+            if(v[j-1].chave<v[j].chave){
                 troca(&v[j-1],&v[j]);
             }
         }
     }
 }
+
+
 
 void BubbleSort(struct item*v,int n){
     for(int i=0;i<n-1;i++){
@@ -89,7 +93,7 @@ void ShellSort( struct item *v, int n){
             aux=v[i];
             j=i;
 
-            while(v[j-h].chave>aux.chave){
+            while(v[j-h].chave<aux.chave){
                 v[j]=v[j-h];
                 j-=h;
                 if(j<h)break;
@@ -193,33 +197,69 @@ void QuickSort(int *v,int LI,int LS){
     }
 }
 
-void Radixsort(int *vet, int n) {
-	int i, exp = 1, m = 0, bucket[n], temp[n];
 
-	for(i = 0; i < n; i++) {
-		if(vet[i] > m) {
-			m = vet[i];
-		}
-	}
 
-	while((m/exp) > 0) {
-		for (i = 0; i < n; i++) {
-			bucket[i] = 0;
-		}
-		for(i = 0; i < n; i++) {
-			bucket[(vet[i] / exp) % 10]++;
-		}
-		for(i = 1; i < n; i++) {
-			bucket[i] += bucket[i-1];
-		}
-		for(i = (n - 1); i >= 0; i--) {
-			temp[--bucket[(vet[i] / exp) % 10]] = vet[i];
-		}
-		for(i = 0; i < n; i++) {
-			vet[i] = temp[i];
-		}
-		exp *= 10;
-	}
+
+
+vetor **geradorDeVetorCrescente(vetor **vet,int tam){
+    int seed=0,aux;
+    // gera 10 casos de vetores
+    vet=(vetor**)malloc(10*sizeof(vetor*));
+    for(int i=0;i<10;i++){
+        vet[i]=(vetor*)malloc(tam*sizeof(vetor));
+    }
+
+    srand(seed);
+
+    for(int i=0;i<10;i++){
+        aux=0;
+        for(int j=0;j<tam;j++){
+            vet[i][j].chave=aux+rand()%100;
+            vet[i][j].valor=100+rand();
+            aux=vet[i][j].chave;
+        }
+    }
+    return vet;
+    }
+
+
+void Radixsort(vetor *vet, int n) {
+    int i, exp = 1, m = vet[0].chave;
+    vetor *bucket = (vetor*)malloc(n * sizeof(vetor));
+    vetor *temp = (vetor*)malloc(n * sizeof(vetor));
+
+    for (i = 1; i < n; i++) {
+        if (vet[i].chave > m) {
+            m = vet[i].chave;
+        }
+    }
+
+    while (m / exp > 0) {
+        int cont[10] = {0};
+
+        for (i = 0; i < n; i++) {
+            int index = (vet[i].chave / exp) % 10;
+            cont[index]++;
+        }
+
+        for (i = 8; i >= 0; i--) {
+            cont[i] += cont[i + 1];
+        }
+
+        for (i = n - 1; i >= 0; i--) {
+            int index = (vet[i].chave / exp) % 10;
+            temp[--cont[index]] = vet[i];
+        }
+
+        for (i = 0; i < n; i++) {
+            vet[i] = temp[i];
+        }
+
+        exp *= 10;
+    }
+
+    free(bucket);
+    free(temp);
 }
 
 
