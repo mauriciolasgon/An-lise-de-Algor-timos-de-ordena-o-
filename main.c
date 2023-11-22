@@ -5,16 +5,16 @@
 
 int main()
 {
-    vetor **vet;
     int tam=10;
-    vet=geradorDeVetor(vet,tam);
+    vetor** vet = (vetor**)malloc(sizeof(vetor));
+    vet = geradorDeVetor(vet,tam);
     //MergeSort(x,20);
     printf("\n");
 
     imprimeVetor(vet,tam);
 
-    for(int i=0;i<10;i++){
-        MergeSort(vet[i],tam);
+    for(int i=0;i<tam;i++){
+        Radixsort(vet[i],tam);
     }
     printf("\n");
 
