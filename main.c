@@ -7,18 +7,18 @@
 int main()
 {
     vetor **vet=NULL;
-    int tam=pow(10,4);
+    int tam=10;
     double media=0;
     clock_t inicio,fim;
     double tempDecorrido;
 
     vet=geradorDeVetorAleatorio(vet,tam);
 
-
+    imprimeVetores(vet,tam);
     printf("\n");
     for(int i=0;i<10;i++){
         inicio=clock();
-        InsertionSort(vet[i],tam);
+        QuickSort(vet[i],0,tam-1);
         fim=clock();
         tempDecorrido=((double) (fim-inicio))/CLOCKS_PER_SEC ;
         media+=tempDecorrido;
@@ -27,8 +27,7 @@ int main()
     printf("\nTempo medio: %f s", media/10);
     printf("\n");
 
-
-
+    imprimeVetores(vet,tam);
     liberaVetor(vet);
 
     return 0;

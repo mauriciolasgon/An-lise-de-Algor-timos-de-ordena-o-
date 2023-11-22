@@ -165,29 +165,27 @@ void MergeSort(vetor *v,int n){
 
 }
 
-int particao(int *v,int LI,int LS){
-    int aux,pivo,e=LI,d=LS;
-    pivo=v[e];
+int particao(vetor *v,int LI,int LS){
+    int pivo,e=LI,d=LS;
+    pivo=v[e].chave;
     while(e<d)
     {
-        while((v[e]<=pivo)&&(e<LS)){e++;}
-        while((v[d]>pivo)&&(d>LI)){d--;}
+        while((v[e].chave<=pivo)&&(e<LS)){e++;}
+        while((v[d].chave>pivo)&&(d>LI)){d--;}
         if(e<d)
         {
-            aux=v[e];
-            v[e]=v[d];
-            v[d]=aux;
+            troca(&v[e],&v[d]);
+
         }
     }
-    aux=v[LI];
-    v[LI]=v[d];
-    v[d]=aux;
+    troca(&v[LI],&v[d]);
+
     return d;
 }
 
 
 
-void QuickSort(int *v,int LI,int LS){
+void QuickSort(vetor *v,int LI,int LS){
     if(LI<LS)
     {
         int p;
