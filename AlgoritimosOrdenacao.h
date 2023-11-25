@@ -20,16 +20,19 @@ void imprimeVetores(vetor **vet,int tam){
 
 }
 
+vetor ** inicializaVetor(int tam){
+    vetor **vet=(vetor**)malloc(10*sizeof(vetor*));
+    for(int i=0;i<10;i++){
+        vet[i]=(vetor*)malloc(tam*sizeof(vetor));
+    }
+
+    return vet;
+}
 
 
 vetor ** geradorDeVetorAleatorio(vetor **vet,int tam){
     int seed=0;
     // gera 10 casos de vetores
-    vet=(vetor**)malloc(10*sizeof(vetor*));
-    for(int i=0;i<10;i++){
-        vet[i]=(vetor*)malloc(tam*sizeof(vetor));
-    }
-
     srand(seed);
     for(int i=0;i<10;i++){
         for(int j=0;j<tam;j++){

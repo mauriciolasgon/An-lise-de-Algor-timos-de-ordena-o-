@@ -6,16 +6,20 @@
 
 int main()
 {
-    vetor **vet=NULL;
+    vetor **vet;
     int tam=pow(10,4);
     double media=0;
     clock_t inicio,fim;
     double tempDecorrido;
 
+    vet=inicializaVetor(tam);
     vet=geradorDeVetorAleatorio(vet,tam);
 
 
-    printf("\n");
+    printf("----------------TESTES DE UM VETOR ALEATÓRIO----------------\n");
+
+    media=0;
+    printf("\n Teste Bubble: \n");
     for(int i=0;i<10;i++){
         inicio=clock();
         InsertionSort(vet[i],tam);
