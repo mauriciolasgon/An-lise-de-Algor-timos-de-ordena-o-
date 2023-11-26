@@ -165,12 +165,14 @@ void MergeSort(vetor *v,int n){
     vetor *c=(vetor*)malloc(sizeof(vetor)*n);
     Sort(v,c,0,n-1);
     free(c);
-
 }
 
+
+
 int particao(vetor *v,int LI,int LS){
-    int pivo,e=LI,d=LS;
+    int pivo,e=LI,d=LS,medio=(d-e)/2;
     pivo=v[e].chave;
+
     while(e<d)
     {
         while((v[e].chave>=pivo)&&(e<LS)){e++;}
@@ -205,13 +207,8 @@ void QuickSort(vetor *v,int LI,int LS){
 vetor **geradorDeVetorCrescente(vetor **vet,int tam){
     int seed=0,aux;
     // gera 10 casos de vetores
-    vet=(vetor**)malloc(10*sizeof(vetor*));
-    for(int i=0;i<10;i++){
-        vet[i]=(vetor*)malloc(tam*sizeof(vetor));
-    }
 
     srand(seed);
-
     for(int i=0;i<10;i++){
         aux=0;
         for(int j=0;j<tam;j++){

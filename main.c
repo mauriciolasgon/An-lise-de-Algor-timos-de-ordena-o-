@@ -7,7 +7,7 @@
 int main()
 {
     vetor **vet;
-    int tam=pow(10,4);
+    int tam=5*pow(10,4);
     double media=0;
     clock_t inicio,fim;
     double tempDecorrido;
@@ -19,10 +19,10 @@ int main()
     printf("----------------TESTES DE UM VETOR ALEATÓRIO----------------\n");
 
     media=0;
-    printf("\n Teste Bubble: \n");
+    printf("\n Teste Quick: \n");
     for(int i=0;i<10;i++){
         inicio=clock();
-        InsertionSort(vet[i],tam);
+        QuickSort(vet[i],0,tam-1);
         fim=clock();
         tempDecorrido=((double) (fim-inicio))/CLOCKS_PER_SEC ;
         media+=tempDecorrido;
